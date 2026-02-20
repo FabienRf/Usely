@@ -46,15 +46,15 @@ namespace $ProjectName
 
 # MainWindow.xaml
 @"
-<Window x:Class=""$ProjectName.MainWindow""
-        xmlns=""http://schemas.microsoft.com/winfx/2006/xaml/presentation""
-        xmlns:x=""http://schemas.microsoft.com/winfx/2006/xaml""
-        Title=""$ProjectName"" Height=""350"" Width=""525"">
+<Window x:Class="$ProjectName.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="$ProjectName" Height="350" Width="525">
     <Grid>
-        <StackPanel Margin=""20"">
-            <Button Content=""Always On Top"" Height=""40"" Margin=""5""/>
-            <Button Content=""Capture Screen"" Height=""40"" Margin=""5""/>
-            <Button Content=""Drawing Mode"" Height=""40"" Margin=""5""/>
+        <StackPanel Margin="20">
+            <Button Content="Put It On Top" Height="40" Margin="5"/>
+            <Button Content="Capture Screen" Height="40" Margin="5"/>
+            <Button Content="Drawing Mode" Height="40" Margin="5"/>
         </StackPanel>
     </Grid>
 </Window>
@@ -79,21 +79,21 @@ namespace $ProjectName
 # appsettings.json
 @"
 {
-  ""Hotkeys"": {
-    ""PutItOnTop"": ""Ctrl+Shift+A"",
-    ""Capture"": ""Ctrl+Shift+S"",
-    ""DrawMode"": ""Ctrl+Shift+D""
+  "Hotkeys": {
+    "PutItOnTop": "Ctrl+Shift+A",
+    "Capture": "Ctrl+Shift+S",
+    "DrawMode": "Ctrl+Shift+D"
   }
 }
 "@ | Out-File -Encoding utf8 "appsettings.json"
 
 # Resources/Styles.xaml
 @"
-<ResourceDictionary xmlns=""http://schemas.microsoft.com/winfx/2006/xaml/presentation""
-                    xmlns:x=""http://schemas.microsoft.com/winfx/2006/xaml"">
-    <Style TargetType=""Button"">
-        <Setter Property=""FontSize"" Value=""16""/>
-        <Setter Property=""Margin"" Value=""5""/>
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Style TargetType="Button">
+        <Setter Property="FontSize" Value="16"/>
+        <Setter Property="Margin" Value="5"/>
     </Style>
 </ResourceDictionary>
 "@ | Out-File -Encoding utf8 "Resources/Styles.xaml"
@@ -194,10 +194,10 @@ namespace $ProjectName.ViewModels
 
 # Views/OverlayWindow.xaml
 @"
-<Window x:Class=""$ProjectName.Views.OverlayWindow""
-        xmlns=""http://schemas.microsoft.com/winfx/2006/xaml/presentation""
-        xmlns:x=""http://schemas.microsoft.com/winfx/2006/xaml""
-        Title=""Overlay"" Height=""300"" Width=""400"" WindowStyle=""None"" AllowsTransparency=""True"" Background=""Transparent"">
+<Window x:Class="$ProjectName.Views.OverlayWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Overlay" Height="300" Width="400" WindowStyle="None" AllowsTransparency="True" Background="Transparent">
     <Grid>
     </Grid>
 </Window>
@@ -221,11 +221,11 @@ namespace $ProjectName.Views
 
 # Views/DrawingToolbar.xaml
 @"
-<Window x:Class=""$ProjectName.Views.DrawingToolbar""
-        xmlns=""http://schemas.microsoft.com/winfx/2006/xaml/presentation""
-        xmlns:x=""http://schemas.microsoft.com/winfx/2006/xaml""
-        Title=""Toolbar"" Height=""100"" Width=""300"">
-    <StackPanel Orientation=""Horizontal"">
+<Window x:Class="$ProjectName.Views.DrawingToolbar"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Toolbar" Height="100" Width="300">
+    <StackPanel Orientation="Horizontal">
     </StackPanel>
 </Window>
 "@ | Out-File -Encoding utf8 "Views/DrawingToolbar.xaml"
