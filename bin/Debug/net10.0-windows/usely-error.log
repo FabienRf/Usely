@@ -1,0 +1,17 @@
+[20/02/2026 20:01:33] System.Windows.Markup.XamlParseException: 'L'invocation du constructeur sur le type 'Usely.MainWindow' qui correspond aux contraintes de liaison spécifiées a levé une exception.' numéro de ligne '3' et position de ligne '9'.
+ ---> System.ArgumentException: Hwnd de zéro n'est pas valide.
+   at System.Windows.Interop.HwndSource.CriticalFromHwnd(IntPtr hwnd)
+   at Usely.Core.HotkeyManager..ctor(Window window) in C:\Users\Utilisateur\Desktop\ProjetPersonnel\Usely\Core\HotkeyManager.cs:line 29
+   at Usely.MainWindow..ctor() in C:\Users\Utilisateur\Desktop\ProjetPersonnel\Usely\MainWindow.xaml.cs:line 15
+   at System.RuntimeType.CreateInstanceDefaultCtor(Boolean publicOnly, Boolean wrapExceptions)
+   --- End of inner exception stack trace ---
+   at System.Windows.Markup.XamlReader.RewrapException(Exception e, IXamlLineInfo lineInfo, Uri baseUri)
+   at System.Windows.Markup.WpfXamlLoader.Load(XamlReader xamlReader, IXamlObjectWriterFactory writerFactory, Boolean skipJournaledProperties, Object rootObject, XamlObjectWriterSettings settings, Uri baseUri)
+   at System.Windows.Markup.WpfXamlLoader.LoadBaml(XamlReader xamlReader, Boolean skipJournaledProperties, Object rootObject, XamlAccessLevel accessLevel, Uri baseUri)
+   at System.Windows.Markup.XamlReader.LoadBaml(Stream stream, ParserContext parserContext, Object parent, Boolean closeStream)
+   at System.Windows.Application.LoadBamlStreamWithSyncInfo(Stream stream, ParserContext pc)
+   at System.Windows.Application.DoStartup()
+   at System.Windows.Application.<.ctor>b__1_0(Object unused)
+   at System.Windows.Threading.ExceptionWrapper.InternalRealCall(Delegate callback, Object args, Int32 numArgs)
+   at System.Windows.Threading.ExceptionWrapper.TryCatchWhen(Object source, Delegate callback, Object args, Int32 numArgs, Delegate catchHandler)
+
