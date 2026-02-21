@@ -7,13 +7,20 @@ namespace Usely.Core
 {
     public class HotkeyManager : IDisposable
     {
+        // Hotkey message ID
         private const int WM_HOTKEY = 0x0312;
-        private const uint MOD_CONTROL = 0x0002;
+        private const uint MOD_CTRL = 0x0002;
         private const uint MOD_SHIFT = 0x0004;
-        private const uint VK_A = 0x41;
+
+        // Up arrow key
+        private const uint VK_UP = 0x26;
+        // Native window handle
         private readonly IntPtr _hwnd;
+        // Message source/hook
         private readonly HwndSource _source;
-        private const int HOTKEY_ID = 9000;
+
+        // Hotkey identifier
+        private const int HOTKEY_ID = 1;
 
         [DllImport("user32.dll")]
         private static extern bool RegisterHotKey(IntPtr hWnd, int id, uint fsModifiers, uint vk);
@@ -21,14 +28,14 @@ namespace Usely.Core
         [DllImport("user32.dll")]
         private static extern bool UnregisterHotKey(IntPtr hWnd, int id);
 
-        public event Action OnPutItOnTop;
+        public event Action? OnPutItOnTop;
 
         public HotkeyManager(Window window)
         {
             _hwnd = new WindowInteropHelper(window).Handle;
             _source = HwndSource.FromHwnd(_hwnd);
             _source.AddHook(HwndHook);
-            RegisterHotKey(_hwnd, HOTKEY_ID, MOD_CONTROL | MOD_SHIFT, VK_A);
+            RegisterHotKey(_hwnd, HOTKEY_ID, MOD_CTRL | MOD_SHIFT, VK_UP);
             window.Closed += (_, __) => Dispose();
         }
 
@@ -36,7 +43,19 @@ namespace Usely.Core
         {
             if (msg == WM_HOTKEY && wParam.ToInt32() == HOTKEY_ID)
             {
-                OnPutItOnTop?.Invoke();
+                try
+                {
+                    var target = WindowManager.GetForegroundWindow();
+                    if (target != IntPtr.Zero && target != _hwnd)
+                    {
+                        bool currentlyTop = WindowManager.IsWindowOnTop(target);
+                        WindowManager.SetPutItOnTop(target, !currentlyTop);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Error handling hotkey: {ex.Message}");
+                }
                 handled = true;
             }
             return IntPtr.Zero;
