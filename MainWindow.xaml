@@ -4,18 +4,35 @@
         Title="Usely"
         Height="350"
         Width="525">
-    <Grid>
-        <StackPanel Margin="20">
-            <Button Content="Put It On Top"
-                    Click="PutItOnTop_Click"
-                    Height="40"
-                    Margin="5"/>
-            <Button Content="Capture Screen"
-                    Height="40"
-                    Margin="5"/>
-            <Button Content="Drawing Mode"
-                    Height="40"
-                    Margin="5"/>
-        </StackPanel>
-    </Grid>
+        <Grid>
+                <StackPanel Margin="20">
+                        <!-- Generate one button per hotkey from DataContext.Hotkeys -->
+                        <ItemsControl ItemsSource="{Binding Hotkeys}">
+                                <ItemsControl.ItemTemplate>
+                                        <DataTemplate>
+                                                <Button Height="40"
+                                                                Margin="5">
+                                                        <Grid>
+                                                                <Grid.ColumnDefinitions>
+                                                                        <ColumnDefinition Width="*"/>
+                                                                        <ColumnDefinition Width="Auto"/>
+                                                                </Grid.ColumnDefinitions>
+
+                                                                <!-- Left: action name (e.g. "PutItOnTop") -->
+                                                                <TextBlock Text="{Binding ActionName}"
+                                                                           VerticalAlignment="Center"/>
+
+                                                                <!-- Right: shortcut text (e.g. "Ctrl+Shift+Up") -->
+                                                                <TextBlock Grid.Column="1"
+                                                                           Text="{Binding KeyLib}"
+                                                                           VerticalAlignment="Center"
+                                                                           HorizontalAlignment="Right"
+                                                                           Margin="10,0,0,0"/>
+                                                        </Grid>
+                                                </Button>
+                                        </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                </StackPanel>
+        </Grid>
 </Window>

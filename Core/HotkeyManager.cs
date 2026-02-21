@@ -28,8 +28,6 @@ namespace Usely.Core
         [DllImport("user32.dll")]
         private static extern bool UnregisterHotKey(IntPtr hWnd, int id);
 
-        public event Action? OnPutItOnTop;
-
         public HotkeyManager(Window window)
         {
             _hwnd = new WindowInteropHelper(window).Handle;

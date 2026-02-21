@@ -3,6 +3,7 @@ using System.Security.Cryptography;
 using System.Windows;
 using System.Windows.Interop;
 using Usely.Core;
+using Usely.ViewModels;
 
 namespace Usely
 {
@@ -15,6 +16,7 @@ namespace Usely
         {
             InitializeComponent();
             SourceInitialized += MainWindow_SourceInitialized;
+            DataContext = new AppSettingsHotkeys();
         }
 
         // Called when the native window is ready; set up hotkeys
