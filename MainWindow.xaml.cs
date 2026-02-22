@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Security.Cryptography;
+using System.Threading;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Interop;
 using Usely.Core;
@@ -10,6 +12,8 @@ namespace Usely
     public partial class MainWindow : Window
     {
         private HotkeyManager? _hotkeyManager;
+        public bool autoClick_Active = false;
+        private CancellationTokenSource? _autoClickCts;
 
         // Window constructor
         public MainWindow()
@@ -25,12 +29,6 @@ namespace Usely
             _hotkeyManager = new HotkeyManager(this);
         }
 
-        // Button handler: toggle this app window's topmost state
-        private void PutItOnTop_Click(object sender, RoutedEventArgs e)
-        {
-            ToggleThisWindowTopmost();
-        }
-
         // Toggle the "always on top" flag for this window
         private void ToggleThisWindowTopmost()
         {
@@ -40,8 +38,39 @@ namespace Usely
             WindowManager.SetPutItOnTop(hwnd, !currentlyTop);
         }
 
+        public void ToggleAutoClicker()
+        {
+            // Start autoclicker
+            if (!autoClick_Active)
+            {
+                autoClick_Active = true;
+                _autoClickCts = new CancellationTokenSource();
+                var token = _autoClickCts.Token;
 
-        // Hotkey handling is done by HotkeyManager in Core/HotkeyManager.cs
+                _ = Task.Run(async () =>
+                {
+                    try
+                    {
+                        while (!token.IsCancellationRequested)
+                        {
+                            MouseClicker.LeftClick();
+                            await Task.Delay(200, token);
+                        }
+                    }
+                    catch (TaskCanceledException)
+                    {
+                        // expected on stop
+                    }
+                });
+            }
+            // Stop autoclicker
+            else
+            {
+                autoClick_Active = false;
+                _autoClickCts?.Cancel();
+                _autoClickCts = null;
+            }
+        }
     }
 }
 
