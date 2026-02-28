@@ -6,6 +6,7 @@ using System.Text.Json.Nodes;
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Interop;
+using Usely;
 using Usely.Core;
 
 namespace Usely.Views
@@ -14,13 +15,15 @@ namespace Usely.Views
     {
         private readonly string _hotkeysName;
         private readonly HotkeyManager? _hotkeyManager;
+        private readonly MainWindow? _mainWindow;
         private bool _isCaptured = false;
 
-        public UpdateHotkeys(string actionName, HotkeyManager? hotkeyManager)
+        public UpdateHotkeys(string actionName, HotkeyManager? hotkeyManager, MainWindow? mainWindow)
         {
             InitializeComponent();
             _hotkeysName = actionName;
             _hotkeyManager = hotkeyManager;
+            _mainWindow = mainWindow;
             this.KeyDown += RebindHotkeys;
         }
 
@@ -34,21 +37,22 @@ namespace Usely.Views
 
             UpdateHotkeysInJson(_hotkeysName, keyString, windowHex);
             this.Close();
+
+            _mainWindow?.Show();
         }
 
 
         void UpdateHotkeysInJson(string hotkeysName, string newKeyLib, string newWindowKey)
         {
-            var baseDir = AppContext.BaseDirectory;
-            var settingsPath = Path.Combine(baseDir, "appsettings.json");
-            
-            string json = File.ReadAllText(settingsPath);
+            string path = "./appsettings.json";
+            string json = File.ReadAllText(path);
 
             var obj = JsonObject.Parse(json)?.AsObject();
 
             if (obj != null && obj["Hotkeys"]?[hotkeysName] != null)
             {
                 obj["Hotkeys"]![hotkeysName]!["keyLib"] = newKeyLib;
+
                 obj["Hotkeys"]![hotkeysName]!["windowActionKey"] = newWindowKey;
 
                 var options = new JsonSerializerOptions
@@ -56,11 +60,10 @@ namespace Usely.Views
                     WriteIndented = true,
                     Encoder = System.Text.Encodings.Web.JavaScriptEncoder.UnsafeRelaxedJsonEscaping
                 };
-                
+
                 string updatedJson = JsonSerializer.Serialize(obj, options);
-                File.WriteAllText(settingsPath, updatedJson);
-                
-                // Recharger les hotkeys
+                File.WriteAllText(path, updatedJson);
+
                 _hotkeyManager?.ReloadHotkeys();
             }
         }

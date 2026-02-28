@@ -16,7 +16,6 @@ namespace Usely
         public bool autoClick_Active = false;
         private CancellationTokenSource? _autoClickCts;
 
-        // Window constructor
         public MainWindow()
         {
             InitializeComponent();
@@ -24,13 +23,11 @@ namespace Usely
             DataContext = new AppSettingsHotkeys();
         }
 
-        // Called when the native window is ready; set up hotkeys
         private void MainWindow_SourceInitialized(object? sender, EventArgs e)
         {
             _hotkeyManager = new HotkeyManager(this);
         }
 
-        // Toggle the "always on top" flag for this window
         private void ToggleThisWindowTopmost()
         {
             var helper = new WindowInteropHelper(this);
@@ -41,7 +38,6 @@ namespace Usely
 
         public void ToggleAutoClicker()
         {
-            // Start autoclicker
             if (!autoClick_Active)
             {
                 autoClick_Active = true;
@@ -59,12 +55,9 @@ namespace Usely
                         }
                     }
                     catch (TaskCanceledException)
-                    {
-                        // expected on stop
-                    }
+                    { }
                 });
             }
-            // Stop autoclicker
             else
             {
                 autoClick_Active = false;
@@ -75,12 +68,12 @@ namespace Usely
 
         private void UpdateHotkey_Click(object sender, RoutedEventArgs e)
         {
-            // Récupérer le bouton cliqué
             var button = sender as System.Windows.Controls.Button;
             if (button?.DataContext is AppSettingsView.HotkeyView hotkeyView)
             {
-                // Ouvrir la fenêtre UpdateHotkeys avec le nom de l'action et le HotkeyManager
-                var updateWindow = new UpdateHotkeys(hotkeyView.ActionName, _hotkeyManager);
+                this.Hide();
+
+                var updateWindow = new UpdateHotkeys(hotkeyView.ActionName, _hotkeyManager, this);
                 updateWindow.ShowDialog();
             }
         }
