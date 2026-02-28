@@ -6,6 +6,7 @@ using System.Windows;
 using System.Windows.Interop;
 using Usely.Core;
 using Usely.ViewModels;
+using Usely.Views;
 
 namespace Usely
 {
@@ -69,6 +70,18 @@ namespace Usely
                 autoClick_Active = false;
                 _autoClickCts?.Cancel();
                 _autoClickCts = null;
+            }
+        }
+
+        private void UpdateHotkey_Click(object sender, RoutedEventArgs e)
+        {
+            // Récupérer le bouton cliqué
+            var button = sender as System.Windows.Controls.Button;
+            if (button?.DataContext is AppSettingsView.HotkeyView hotkeyView)
+            {
+                // Ouvrir la fenêtre UpdateHotkeys avec le nom de l'action et le HotkeyManager
+                var updateWindow = new UpdateHotkeys(hotkeyView.ActionName, _hotkeyManager);
+                updateWindow.ShowDialog();
             }
         }
     }

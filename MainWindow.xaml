@@ -11,23 +11,30 @@
                                 <ItemsControl.ItemTemplate>
                                         <DataTemplate>
                                                 <Button Height="40"
-                                                                Margin="5">
+                                                        Margin="5">
                                                         <Grid>
                                                                 <Grid.ColumnDefinitions>
-                                                                        <ColumnDefinition Width="*"/>
                                                                         <ColumnDefinition Width="Auto"/>
                                                                 </Grid.ColumnDefinitions>
 
                                                                 <!-- Left: action name (e.g. "PutItOnTop") -->
-                                                                <TextBlock Text="{Binding ActionName}"
+                                                                <TextBlock Grid.Column="1"
+                                                                           Text="{Binding ActionName}"
                                                                            VerticalAlignment="Center"/>
 
                                                                 <!-- Right: shortcut text (e.g. "Ctrl+Shift+Up") -->
-                                                                <TextBlock Grid.Column="1"
+                                                                <TextBlock Grid.Column="2"
                                                                            Text="{Binding KeyLib}"
                                                                            VerticalAlignment="Center"
                                                                            HorizontalAlignment="Right"
                                                                            Margin="10,0,0,0"/>
+
+                                                                <!-- Button to update the hotkey (pen icon ✎) -->
+                                                                <Button Grid.Column="3"
+                                                                        Content="✎"
+                                                                        Margin="30,0,0,0"
+                                                                        VerticalAlignment="Center"
+                                                                        Click="UpdateHotkey_Click"/>
                                                         </Grid>
                                                 </Button>
                                         </DataTemplate>

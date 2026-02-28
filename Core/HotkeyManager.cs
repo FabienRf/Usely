@@ -190,6 +190,21 @@ namespace Usely.Core
             _mainWindow.ToggleAutoClicker();
         }
 
+        public void ReloadHotkeys()
+        {
+            // Désenregistrer tous les hotkeys existants
+            foreach (var id in _hotkeyActions.Keys)
+            {
+                UnregisterHotKey(_hwnd, id);
+            }
+
+            _hotkeyActions.Clear();
+            _nextHotkeyId = 1;
+
+            // Ré-enregistrer les hotkeys depuis le fichier de configuration
+            RegisterConfiguredHotkeys();
+        }
+
         public void Dispose()
         {
             foreach (var id in _hotkeyActions.Keys)
