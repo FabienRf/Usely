@@ -77,6 +77,12 @@ namespace Usely
                 updateWindow.ShowDialog();
             }
         }
+
+        private void DrawingMode_Open(object sender, RoutedEventArgs e)
+        {
+            this.Hide();
+            // ?.Show();
+        }
     }
 }
 

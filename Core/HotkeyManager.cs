@@ -7,6 +7,7 @@ using System.Text.Json;
 using System.Windows;
 using System.Windows.Interop;
 using Usely;
+using Usely.Views;
 
 namespace Usely.Core
 {
@@ -17,6 +18,7 @@ namespace Usely.Core
         private const uint MOD_SHIFT = 0x0004;
 
         private readonly MainWindow _mainWindow;
+        private readonly DrawingToolbar _DrawingToolbar;
         private readonly IntPtr _hwnd;
         private readonly HwndSource _source;
 
@@ -32,6 +34,8 @@ namespace Usely.Core
         public HotkeyManager(MainWindow window)
         {
             _mainWindow = window;
+
+            _DrawingToolbar = new DrawingToolbar { Owner = window };
 
             _hwnd = new WindowInteropHelper(window).Handle;
             _source = HwndSource.FromHwnd(_hwnd);
@@ -182,7 +186,7 @@ namespace Usely.Core
 
         private void HandleDrawMode()
         {
-            // Skeleton
+            _DrawingToolbar.ShowDialog();
         }
 
         private void HandleAutoClicker()
@@ -192,7 +196,6 @@ namespace Usely.Core
 
         public void ReloadHotkeys()
         {
-            // Désenregistrer tous les hotkeys existants
             foreach (var id in _hotkeyActions.Keys)
             {
                 UnregisterHotKey(_hwnd, id);
@@ -201,7 +204,6 @@ namespace Usely.Core
             _hotkeyActions.Clear();
             _nextHotkeyId = 1;
 
-            // Ré-enregistrer les hotkeys depuis le fichier de configuration
             RegisterConfiguredHotkeys();
         }
 

@@ -9,11 +9,7 @@ C:\Users\Utilisateur\Desktop\ProjetPersonnel\Usely\bin\Debug\net10.0-windows\Use
 C:\Users\Utilisateur\Desktop\ProjetPersonnel\Usely\bin\Debug\net10.0-windows\Usely.pdb
 C:\Users\Utilisateur\Desktop\ProjetPersonnel\Usely\obj\Debug\net10.0-windows\MainWindow.baml
 C:\Users\Utilisateur\Desktop\ProjetPersonnel\Usely\obj\Debug\net10.0-windows\Resources\Styles.baml
-C:\Users\Utilisateur\Desktop\ProjetPersonnel\Usely\obj\Debug\net10.0-windows\Views\DrawingToolbar.baml
-C:\Users\Utilisateur\Desktop\ProjetPersonnel\Usely\obj\Debug\net10.0-windows\Views\OverlayWindow.baml
 C:\Users\Utilisateur\Desktop\ProjetPersonnel\Usely\obj\Debug\net10.0-windows\MainWindow.g.cs
-C:\Users\Utilisateur\Desktop\ProjetPersonnel\Usely\obj\Debug\net10.0-windows\Views\DrawingToolbar.g.cs
-C:\Users\Utilisateur\Desktop\ProjetPersonnel\Usely\obj\Debug\net10.0-windows\Views\OverlayWindow.g.cs
 C:\Users\Utilisateur\Desktop\ProjetPersonnel\Usely\obj\Debug\net10.0-windows\Usely.g.resources
 C:\Users\Utilisateur\Desktop\ProjetPersonnel\Usely\obj\Debug\net10.0-windows\Usely.GeneratedMSBuildEditorConfig.editorconfig
 C:\Users\Utilisateur\Desktop\ProjetPersonnel\Usely\obj\Debug\net10.0-windows\Usely.AssemblyInfoInputs.cache
@@ -25,5 +21,7 @@ C:\Users\Utilisateur\Desktop\ProjetPersonnel\Usely\obj\Debug\net10.0-windows\Use
 C:\Users\Utilisateur\Desktop\ProjetPersonnel\Usely\obj\Debug\net10.0-windows\Usely.genruntimeconfig.cache
 C:\Users\Utilisateur\Desktop\ProjetPersonnel\Usely\obj\Debug\net10.0-windows\ref\Usely.dll
 C:\Users\Utilisateur\Desktop\ProjetPersonnel\Usely\obj\Debug\net10.0-windows\Usely.sourcelink.json
-C:\Users\Utilisateur\Desktop\ProjetPersonnel\Usely\obj\Debug\net10.0-windows\Views\UpdateHotkeys.baml
-C:\Users\Utilisateur\Desktop\ProjetPersonnel\Usely\obj\Debug\net10.0-windows\Views\UpdateHotkeys.g.cs
+C:\Users\Utilisateur\Desktop\ProjetPersonnel\Usely\obj\Debug\net10.0-windows\Views\UpdateHotkeys\UpdateHotkeys.baml
+C:\Users\Utilisateur\Desktop\ProjetPersonnel\Usely\obj\Debug\net10.0-windows\Views\UpdateHotkeys\UpdateHotkeys.g.cs
+C:\Users\Utilisateur\Desktop\ProjetPersonnel\Usely\obj\Debug\net10.0-windows\Views\DrawingMode\DrawingToolbar.baml
+C:\Users\Utilisateur\Desktop\ProjetPersonnel\Usely\obj\Debug\net10.0-windows\Views\DrawingMode\DrawingToolbar.g.cs

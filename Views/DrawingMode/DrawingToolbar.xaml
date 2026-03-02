@@ -1,0 +1,33 @@
+<Window x:Class="Usely.Views.DrawingToolbar"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Toolbar"
+        Height="100"
+        Width="300">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <Button Grid.Column="0"
+                Content="cursor"
+                Margin="10,0,0,0"
+                VerticalAlignment="Center"
+                Click="CursorMode_Click"/>
+
+        <Button Grid.Column="1"
+                Content="draw"
+                Margin="10,0,0,0"
+                VerticalAlignment="Center"
+                Click="DrawMode_Click"/>
+
+        <Button Grid.Column="2"
+                Content="close"
+                Margin="10,0,0,0"
+                VerticalAlignment="Center"
+                Click="Close_Click"/>
+
+    </Grid>
+</Window>
